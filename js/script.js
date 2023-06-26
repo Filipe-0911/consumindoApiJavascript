@@ -1,12 +1,10 @@
-console.log(`mandando oi pro amigo`);
-
-function mandaMensagem () {
-    console.log(`tudo bem?`);
-    console.log(`vou te mandar uma solicitacao`);
-    console.log(`solicitacao recebida`)
-
-}
-
-mandaMensagem();
-
-console.log(`tchau`)
+var consultaCep = fetch('https://viacep.com.br/ws/01001250/json/')
+    .then(resposta => resposta.json())
+    .then(r => {
+        if(r.erro) {
+            throw Error('Esse CEP não existe!')
+        } else {
+            console.log(r)
+        }
+        })
+    .catch(erro => console.log(erro));
