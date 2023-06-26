@@ -1,4 +1,6 @@
-var consultaCep = fetch('https://viacep.com.br/ws/01001250/json/')
+var cep = prompt('Digite um CEP');
+
+var consultaCep = fetch(`https://viacep.com.br/ws/${cep}/json/`)
     .then(resposta => resposta.json())
     .then(r => {
         if(r.erro) {
@@ -7,4 +9,5 @@ var consultaCep = fetch('https://viacep.com.br/ws/01001250/json/')
             console.log(r)
         }
         })
-    .catch(erro => console.log(erro));
+    .catch(erro => console.log(erro))
+    .finally(mensagem => console.log('Processamento concluído'));
