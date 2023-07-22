@@ -75,3 +75,10 @@
     line-height: 18px;
     color: var(--vermelho);
 }
+
+.campo__escrita2 {
+    border: 1px solid var(--vermelho);
+    border-radius: 24px;
+    padding: 1em;
+    width: 100%;
+}
