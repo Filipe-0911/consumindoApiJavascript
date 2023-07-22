@@ -20,7 +20,6 @@ async function buscaEndereco(cep) {
     }
 }
 
-//focusout é quando vc 'des-seleciona'
 cep.addEventListener(`focusout`, () => buscaEndereco(cep.value));
 
 function insereDadosHtml(enderecoCompleto) {
