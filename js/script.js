@@ -3,8 +3,11 @@ var bairro = document.getElementById(`bairro`);
 var cidade = document.getElementById(`cidade`);
 var estado = document.getElementById(`estado`);
 var cep = document.getElementById('cep');
+var mensagemErro = document.getElementById(`erro`);
 
 async function buscaEndereco(cep) {
+    mensagemErro.innerHTML = "";
+    var cepModificar = document.getElementById('cep');
     try {
         var consultaCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         var consultaCepConvertida = await consultaCep.json();
@@ -12,11 +15,14 @@ async function buscaEndereco(cep) {
         if (consultaCepConvertida.erro) {
             throw Error(`CEP não existente!`)
         }
-        //console.log(consultaCepConvertida);
+        cepModificar.className = `campo__escrita`;
         return insereDadosHtml(consultaCepConvertida);
 
     } catch (erro) {
-        console.log(erro);
+        cepModificar.className = `campo__escrita2`;
+        mensagemErro.innerHTML = `<span class="erro__imagem">
+        </span><p class="erro__texto">CEP inválido. Tente novamente!</p>`;
+        
     }
 }
 
