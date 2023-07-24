@@ -1,13 +1,20 @@
-var cep = prompt('Digite um CEP');
+var pegaCep = document.getElementById('cep');
+var cep = `71060639`;
 
-var consultaCep = fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    var consultaCep = fetch(`https://viacep.com.br/ws/${cep}/json/`)
     .then(resposta => resposta.json())
     .then(r => {
-        if(r.erro) {
+        //utilizado r.erro pois quando informado um cep de formato valido ele retorna um erro = true
+        if(r.erro) { 
             throw Error('Esse CEP não existe!')
         } else {
             console.log(r)
         }
         })
-    .catch(erro => console.log(erro))
+    .catch(erro => {
+        if(erro) {
+            throw Error('Cep inválido!')
+        } 
+    })
     .finally(mensagem => console.log('Processamento concluído'));
+
